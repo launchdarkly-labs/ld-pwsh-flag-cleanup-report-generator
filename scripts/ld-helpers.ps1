@@ -304,12 +304,13 @@ function Test-Flag {
 function New-PrSummary {
     param($Candidates, $Rules, [string]$OutPath)
     
-    $codeRemovalCandidates = $Candidates | Where-Object { $_.readyForCodeRemoval } | Select-Object -First 10
-    $archivalCandidates = $Candidates | Where-Object { $_.readyForArchival } | Select-Object -First 10
+    # Get all candidates from all projects, not just the first 10
+    $codeRemovalCandidates = $Candidates | Where-Object { $_.readyForCodeRemoval }
+    $archivalCandidates = $Candidates | Where-Object { $_.readyForArchival }
     
     $lines = @("# LaunchDarkly Flag Cleanup Report",
                "",
-               "**Rules**: temporary flags, created >$($Rules.creationDays) days ago, evaluation threshold: $($Rules.evaluationDays) days",
+               "**Rules**: temporary flags, created >$($Rules.daysSinceCreation) days ago, evaluation threshold: $($Rules.daysSinceLastEvaluation) days",
                "")
     
     if ($codeRemovalCandidates.Count -gt 0) {
@@ -319,7 +320,14 @@ function New-PrSummary {
         $lines += "| Project | Env | Key | Status | LastRequested | Created |"
         $lines += "|---|---|---|---|---|---|"
         foreach ($c in $codeRemovalCandidates) {
-            $lines += "| $($c.project) | $($c.environment) | `$($c.key)` | $($c.status) | $($c.lastRequested) | $($c.createdDate) |"
+            # Format the data properly
+            $lastRequested = if ($c.lastRequested) { $c.lastRequested } else { "never" }
+            $createdDate = if ($c.createdDate) { 
+                [DateTimeOffset]::FromUnixTimeMilliseconds($c.createdDate).ToString("yyyy-MM-dd")
+            } else { 
+                "unknown" 
+            }
+            $lines += "| $($c.project) | $($c.environment) | $($c.key) | $($c.status) | $lastRequested | $createdDate |"
         }
         $lines += ""
     }
@@ -331,7 +339,14 @@ function New-PrSummary {
         $lines += "| Project | Env | Key | Status | LastRequested | Created |"
         $lines += "|---|---|---|---|---|---|"
         foreach ($c in $archivalCandidates) {
-            $lines += "| $($c.project) | $($c.environment) | `$($c.key)` | $($c.status) | $($c.lastRequested) | $($c.createdDate) |"
+            # Format the data properly
+            $lastRequested = if ($c.lastRequested) { $c.lastRequested } else { "never" }
+            $createdDate = if ($c.createdDate) { 
+                [DateTimeOffset]::FromUnixTimeMilliseconds($c.createdDate).ToString("yyyy-MM-dd")
+            } else { 
+                "unknown" 
+            }
+            $lines += "| $($c.project) | $($c.environment) | $($c.key) | $($c.status) | $lastRequested | $createdDate |"
         }
         $lines += ""
     }
