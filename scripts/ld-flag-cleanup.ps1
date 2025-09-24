@@ -64,7 +64,7 @@ catch {
 
 . "$PSScriptRoot/ld-helpers.ps1"
 
-function Load-ProjectConfig {
+function Get-ProjectConfig {
     param([string]$ConfigFilePath)
     
     if (-not (Test-Path $ConfigFilePath)) {
@@ -105,7 +105,7 @@ function Load-ProjectConfig {
     }
 }
 
-function Process-Flag {
+function Invoke-FlagProcessing {
     param($Flag, $StatusLookup, $Project, $Env, $Rules, $Purpose)
     
     # Handle both single environment and multi-environment cases
@@ -145,7 +145,7 @@ function Process-Flag {
         HasCodeRefs    = $hasCodeRefs
     }
 
-    $decision = Evaluate-Flag -Context $ctx -Rules $Rules -Purpose $Purpose
+    $decision = Test-Flag -Context $ctx -Rules $Rules -Purpose $Purpose
     
     # Debug output for first N flags (controlled by printDebugLogs config)
     $debugCount = if ($Rules.printDebugLogs) { $Rules.printDebugLogs } else { 0 }
@@ -173,7 +173,8 @@ $useLdCli = Test-LdCli
 if ($useLdCli) {
     Write-Host "ldcli is available and will be used for data fetching"
 } else {
-    Write-Host "ldcli not found, using REST API"
+    Write-Error "ldcli is required but not found. Please install it: npm install -g @launchdarkly/ldcli"
+    throw "ldcli is required for script operation"
 }
 
 $headers = @{ Authorization = $token }
@@ -182,7 +183,7 @@ Write-Verbose "API headers configured"
 # Load configuration
 if ($ConfigFile) {
     try {
-        $config = Load-ProjectConfig -ConfigFilePath $ConfigFile
+        $config = Get-ProjectConfig -ConfigFilePath $ConfigFile
         
         # Override settings from config if provided
         if ($config.globalSettings) {
@@ -204,7 +205,7 @@ if ($ConfigFile) {
 
 # Load rules (defaults if missing)
 try {
-    $rules = Load-Rules -Path $RulesPath
+    $rules = Get-Rules -Path $RulesPath
     Write-Verbose "Rules loaded successfully"
 }
 catch {
@@ -253,7 +254,9 @@ foreach ($projectConfig in $projectsToProcess) {
             $statuses = Get-FlagStatuses -Project $project -Env $env
             
             # Combine all flags and store by flag key
-            $flags = $codeRemovalFlags + $archivalFlags
+            $flags = @()
+            if ($codeRemovalFlags) { $flags += $codeRemovalFlags }
+            if ($archivalFlags) { $flags += $archivalFlags }
             
             Write-Host "    Found $($flags.Count) flags in $project/$env"
             
@@ -325,7 +328,7 @@ foreach ($projectConfig in $projectsToProcess) {
             $purpose = if ($aggregatedStatus.status -eq "launched") { "codeRemoval" } else { "archival" }
             
             Write-Verbose "Processing flag: $($flag.key) (aggregated across $($environments.Count) environments, status: $($aggregatedStatus.status), purpose: $purpose)"
-            $decision = Process-Flag -Flag $flag -StatusLookup $aggregatedStatus -Project $project -Env $environments -Rules $rules -Purpose $purpose
+            $decision = Invoke-FlagProcessing -Flag $flag -StatusLookup $aggregatedStatus -Project $project -Env $environments -Rules $rules -Purpose $purpose
             [void]$candidates.Add($decision)
             $script:processedFlags++
         }

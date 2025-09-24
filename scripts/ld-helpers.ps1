@@ -1,4 +1,4 @@
-function Load-Rules {
+function Get-Rules {
     param([string]$Path)
     
     # Default configuration
@@ -89,6 +89,11 @@ function Get-FlagsForPurpose {
         $filterParts += "type:temporary"
     }
     
+    # Add evaluation filter for code removal purpose
+    if ($Purpose -eq "codeRemoval") {
+        $filterParts += "evaluated:`{`"after`":$evaluationAfter`}"
+    }
+    
     # Note: We'll do final filtering in evaluation logic since ldcli has limited filter support
     
     $filterString = $filterParts -join ","
@@ -98,8 +103,13 @@ function Get-FlagsForPurpose {
         $result = & ldcli flags list --project $Project --env $Env --expand "codeReferences,evaluation" --filter $filterString --limit 100 -o json 2>&1
         if ($LASTEXITCODE -eq 0) {
             $flags = $result | ConvertFrom-Json
-            Write-Verbose "Retrieved $($flags.items.Count) $Purpose flags via ldcli"
-            return $flags.items
+            if ($flags.items) {
+                Write-Verbose "Retrieved $($flags.items.Count) $Purpose flags via ldcli"
+                return $flags.items
+            } else {
+                Write-Verbose "Retrieved 0 $Purpose flags via ldcli"
+                return @()
+            }
         } else {
             Write-Error "ldcli failed with exit code ${LASTEXITCODE}: $result"
             return @()
@@ -119,8 +129,13 @@ function Get-FlagStatuses {
         $result = & ldcli flags list-statuses --project $Project --environment $Env -o json 2>&1
         if ($LASTEXITCODE -eq 0) {
             $statuses = $result | ConvertFrom-Json
-            Write-Verbose "Retrieved $($statuses.items.Count) flag statuses via ldcli"
-            return $statuses.items
+            if ($statuses.items) {
+                Write-Verbose "Retrieved $($statuses.items.Count) flag statuses via ldcli"
+                return $statuses.items
+            } else {
+                Write-Verbose "Retrieved 0 flag statuses via ldcli"
+                return @()
+            }
         } else {
             Write-Error "ldcli failed with exit code ${LASTEXITCODE}: $result"
             return @()
@@ -186,7 +201,7 @@ function DaysSince($dateValue) {
     }
 }
   
-function Evaluate-Flag {
+function Test-Flag {
     param($Context, $Rules, $Purpose)
   
     $reasons = New-Object System.Collections.ArrayList
@@ -197,8 +212,8 @@ function Evaluate-Flag {
     $createdDays = DaysSince $Context.CreatedDate
     
     # Handle null values (never requested/evaluated)
-    $neverRequested = $lastReqDays -eq $null
-    $neverCreated = $createdDays -eq $null
+    $neverRequested = $null -eq $lastReqDays
+    $neverCreated = $null -eq $createdDays
   
     # Since flags are pre-filtered by ldcli, we only need to check status
     if ($Rules.checkForFlagStatus) {
@@ -258,7 +273,7 @@ function Evaluate-Flag {
       -Uri "$Base/flags/$($Item.project)/$($Item.key)" -Body $patch | Out-Null
   }
   
-  function Patch-FlagDeprecated {
+  function Set-FlagDeprecated {
     param([string]$Base,[hashtable]$Headers,$Item,[bool]$Deprecated)
     $patch = @{
       instructions = @(
@@ -272,7 +287,7 @@ function Evaluate-Flag {
       -Uri "$Base/flags/$($Item.project)/$($Item.key)" -Body $patch | Out-Null
   }
   
-  function Archive-Flag {
+  function Set-FlagArchived {
     param([string]$Base,[hashtable]$Headers,$Item)
     $patch = @{
       instructions = @(

@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "projectKey": "web-platform",
+      "environments": ["production", "staging", "development"]
+    },
+    {
+      "projectKey": "mobile-app",
+      "environments": ["production", "staging"]
+    },
+    {
+      "projectKey": "api-gateway",
+      "environments": ["production"]
+    },
+    {
+      "projectKey": "analytics-service",
+      "environments": ["production", "staging", "development", "testing"]
+    },
+    {
+      "projectKey": "payment-service",
+      "environments": ["production", "staging"]
+    }
+  ],
+  "globalSettings": {
+    "rulesPath": "./config/cleanup-rules.yaml",
+    "outputDirectory": "./artifacts"
+  }
+}
