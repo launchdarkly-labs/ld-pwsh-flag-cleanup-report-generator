@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write  # Required to post PR comments
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -22,8 +22,7 @@ jobs:
         shell: pwsh
         run: |
           ./scripts/ld-flag-cleanup.ps1 `
-            -ConfigFile "./config/projects-config.json" `
-            -Verbose
+            -ConfigFile "./config/proj-env-config-example.json" # replace with your own config file
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

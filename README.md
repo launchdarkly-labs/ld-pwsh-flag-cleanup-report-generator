@@ -2,6 +2,20 @@
 
 A PowerShell script that identifies LaunchDarkly feature flags ready for code removal or archival based on configurable rules. Designed for GitHub Actions integration.
 
+## Prerequisites
+
+- PowerShell 7.0+
+- LaunchDarkly API Access Token (set as `LD_ACCESS_TOKEN` environment variable)
+- LaunchDarkly CLI
+
+## Quickstart (PowerShell)
+
+1. Save the LD API key as an environment variable `$env:LD_ACCESS_TOKEN = <LD_API_KEY>`
+2. Determine the best method for providing the LD project and environment key(s).
+  2a. For single project or if all projects use the same production environment key(s), you can use the command line input arguments
+  2b. If you want to use the script with multiple projects where each project might have different environment(s) that need to be scanner, use the JSON configuration file (example in `config/proj-env-config-example.json`).
+3. Execute the script, i.e.: `pwsh ./scripts/ld-flag-cleanup.ps1 -ConfigFile "./config/proj-env-config-example.json" -Verbose`
+
 ## Input
 
 The script accepts either command-line parameters or a JSON configuration file:
@@ -118,12 +132,6 @@ Tabular format for analysis and filtering.
 ### PR Summary (`pr-summary.txt`)
 Markdown summary suitable for GitHub PR comments, grouped by project.
 
-## Prerequisites
-
-- PowerShell 7.0+
-- LaunchDarkly API Access Token (set as `LD_ACCESS_TOKEN` environment variable)
-- LaunchDarkly CLI
-
 ## GitHub Actions Integration
 
 ### Prerequisites
@@ -138,7 +146,7 @@ Markdown summary suitable for GitHub PR comments, grouped by project.
 ### Basic Workflow
 
 ```yaml
-name: LaunchDarkly Flag Cleanup
+name: LaunchDarkly Flag Cleanup Report
 
 on:
   pull_request:
@@ -149,7 +157,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write  # Required to post PR comments
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       
@@ -166,7 +174,7 @@ jobs:
           LD_ACCESS_TOKEN: ${{ secrets.LD_ACCESS_TOKEN }}
         run: |
           pwsh ./scripts/ld-flag-cleanup.ps1 `
-            -ConfigFile "./config/projects-config.json" `
+            -ConfigFile "./config/proj-env-config-example.json" `
             -Verbose
       
       - name: Upload artifacts
