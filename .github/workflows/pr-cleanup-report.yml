@@ -21,8 +21,12 @@ jobs:
           LD_ACCESS_TOKEN: ${{ secrets.LD_ACCESS_TOKEN }}
         shell: pwsh
         run: |
+          echo "Starting LaunchDarkly cleanup analysis..."
+          echo "Using config file: ./config/proj-env-config-example.json"
           ./scripts/ld-flag-cleanup.ps1 `
             -ConfigFile "./config/proj-env-config-example.json" # replace with your own config file
+          echo "Analysis complete. Checking artifacts..."
+          ls -la artifacts/
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
