@@ -22,9 +22,9 @@ jobs:
         shell: pwsh
         run: |
           echo "Starting LaunchDarkly cleanup analysis..."
-          echo "Using config file: ./config/proj-env-config-example.json"
+          echo "Using config file: ./config/projects-config.json"
           ./scripts/ld-flag-cleanup.ps1 `
-            -ConfigFile "./config/proj-env-config-example.json" # replace with your own config file
+            -ConfigFile "./config/projects-config.json" # replace with your own config file
           echo "Analysis complete. Checking artifacts..."
           ls -la artifacts/
 
