@@ -1,0 +1,13 @@
+# LaunchDarkly Flag Cleanup Rules
+
+# Time-based thresholds
+daysSinceLastEvaluation: 7      # flags with no evaluations in past N days
+daysSinceCreation: 30           # flags created more than N days ago
+
+# Flag requirements
+checkForCodeReferences: true    # whether to check for flags code references (integration needs to be enabled)
+checkForFlagType: true          # whether to check consider the flag type (temporary/permanent)
+checkForFlagStatus: true        # whether to check the flag status (new/active/launched/inactive)
+
+# Debug output
+printDebugLogs: 3               # number of flags to show debug info for (0 = no debug logs)

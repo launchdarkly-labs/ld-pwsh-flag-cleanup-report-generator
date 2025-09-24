@@ -1,0 +1,56 @@
+name: LD Flag Cleanup (PR)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  ld-cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write  # to post a comment
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PowerShell
+        uses: PowerShell/PowerShell@v1
+        with:
+          pwsh-version: '7.4.x'
+
+      # Derive LD projects/envs from your monorepo mapping logic or workflow inputs
+      - name: Resolve LD scope
+        id: scope
+        run: |
+          echo "projects=web,backend" >> $GITHUB_OUTPUT
+          echo "envs=staging,production" >> $GITHUB_OUTPUT
+
+      - name: Run cleanup (report-only)
+        env:
+          LD_ACCESS_TOKEN: ${{ secrets.LD_ACCESS_TOKEN }}
+        run: |
+          pwsh ./scripts/ld-flag-cleanup.ps1 `
+            -Projects "${{ steps.scope.outputs.projects }}".Split(',') `
+            -Environments "${{ steps.scope.outputs.envs }}".Split(',') `
+            -RulesPath "./config/cleanup-rules.yaml" `
+            -OutDir "./artifacts" `
+            -EmitPrSummary
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ld-cleanup-report
+          path: artifacts/*
+
+      - name: Comment summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('artifacts/pr-summary.txt', 'utf8');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });

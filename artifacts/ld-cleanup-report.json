@@ -1,0 +1,815 @@
+[
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "fun-flag",
+    "name": "Fun flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2025-06-26T11:35:18Z",
+    "createdDate": 1734025780779,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 89,
+    "createdDays": 285
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "example-experiment-flag",
+    "name": "Example experiment flag",
+    "status": "active",
+    "flagType": "temporary",
+    "lastRequested": "2025-09-23T13:31:24Z",
+    "createdDate": 1749557305463,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": false,
+    "reasons": [
+      "status=active (need launched for code removal, inactive for archival)"
+    ],
+    "lastRequestedDays": 0,
+    "createdDays": 105
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "fun-flag-2",
+    "name": "Fun flag 2",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2025-09-12T17:08:11Z",
+    "createdDate": 1734034646674,
+    "hasCodeRefs": true,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 11,
+    "createdDays": 285
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "default-release-template-flag",
+    "name": "Default release template flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1754583320878,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 47
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "fun-flag-4",
+    "name": "Fun flag 4",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1741953203774,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 193
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "apple-pay-keystone-flag",
+    "name": "Apple pay: Keystone flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1728400899149,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 350
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "apple-pay-web",
+    "name": "Apple pay: Web",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2025-01-22T10:30:53Z",
+    "createdDate": 1728400912533,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 244,
+    "createdDays": 350
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "test-plan-flag",
+    "name": "Test plan flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1751037079460,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 88
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "apple-pay-mobile",
+    "name": "Apple pay: Mobile",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1728400925389,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 350
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "brand-new-flag",
+    "name": "Brand new flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750791837845,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 91
+  },
+  {
+    "project": "michal-demo-project",
+    "environment": "test",
+    "key": "fun-flag-3",
+    "name": "Fun flag 3",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2025-04-30T14:14:12Z",
+    "createdDate": 1734089578059,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 146,
+    "createdDays": 284
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-profile-ui",
+    "name": "Release: Profile UI",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877938924,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-ai-assistant",
+    "name": "Release: AI Assistant",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877936938,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-broker-dashboard",
+    "name": "Release: Broker Dashboard",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877941326,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-advisor-insights",
+    "name": "Release: Advisor Insights",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877941662,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-old-to-new-search-table",
+    "name": "Release: Old to New Search Table",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877940561,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-new-widget",
+    "name": "Release: New Widget",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877938254,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "config-ai-foundation-model",
+    "name": "Config: AI Foundation Model",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877937952,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-debug-logging",
+    "name": "Release: Debug Logging",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877939888,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-updated-charting-algorithm",
+    "name": "Release: Updated Charting Alorithm",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877939238,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "show-ai-model",
+    "name": "Show: AI Model",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877941974,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "config-ai-prompt",
+    "name": "Config: AI Prompt",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877937309,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-currency-exchange",
+    "name": "Release: Currency Exchange",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877938580,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "config-ai-model",
+    "name": "Config: AI Model",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2025-06-25T19:00:29Z",
+    "createdDate": 1750877937617,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 90,
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-api-rate-limit",
+    "name": "Release: API Rate Limit",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877939565,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-force-update",
+    "name": "Release: Force Update",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877940984,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "cxld-nice-mulberry",
+    "environment": "test,production",
+    "key": "release-ddos-protection",
+    "name": "Release: DDOS Protection",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": null,
+    "createdDate": 1750877940213,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL",
+      "never requested/evaluated"
+    ],
+    "lastRequestedDays": "never",
+    "createdDays": 90
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "flag-with-shared-dependency",
+    "name": "Flag with shared dependency",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1621271439001,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1590
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "release-widget-frontend",
+    "name": "Release: Widget Frontend",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-11-14T22:50:20.944Z",
+    "createdDate": 1610632840104,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1409,
+    "createdDays": 1713
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "show-table-row",
+    "name": "show table row",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T20:02:14.57Z",
+    "createdDate": 1631649551480,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1470
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "db-migration-add-ttl-column",
+    "name": "DB: Migration: Add TTL Column",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1618513236804,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1622
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "anon-flag",
+    "name": "Anon Flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1621040310021,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1593
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "enable-shiny-new-feature",
+    "name": "Enable Shiny New Feature",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-11-14T22:50:20.944Z",
+    "createdDate": 1621546773552,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1409,
+    "createdDays": 1587
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "release-widget",
+    "name": "Release: Widget",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T20:02:14.57Z",
+    "createdDate": 1631029618511,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1477
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "testflag",
+    "name": "testflag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1614113602175,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1673
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "migrate-fraud-detection-backend",
+    "name": "Migrate: Fraud Detection Backend",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1599570554942,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1841
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "flag-with-no-shared-dependency",
+    "name": "Flag with no shared dependency",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1621273561445,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1590
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "child-flag",
+    "name": "Child Flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1621039686062,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1593
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "master-new-branding",
+    "name": "Master: New Branding",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1611254310843,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1706
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "release-profile-v-2",
+    "name": "Release: Profile v2",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1597063187352,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1870
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "master-flag",
+    "name": "Master Flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-11-14T22:50:20.944Z",
+    "createdDate": 1578409488522,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1409,
+    "createdDays": 2086
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "auth-flag",
+    "name": "Auth Flag",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1621040337230,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1593
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "supports-profile-v-2",
+    "name": "Supports: Profile v2",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1597063078446,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1870
+  },
+  {
+    "project": "tarq-scratchpad",
+    "environment": "test,production",
+    "key": "hello-ios-boolean",
+    "name": "hello-ios-boolean",
+    "status": "inactive",
+    "flagType": "temporary",
+    "lastRequested": "2021-09-14T19:58:13.322Z",
+    "createdDate": 1614296599663,
+    "hasCodeRefs": false,
+    "readyForCodeRemoval": false,
+    "readyForArchival": true,
+    "reasons": [
+      "READY FOR ARCHIVAL"
+    ],
+    "lastRequestedDays": 1470,
+    "createdDays": 1671
+  }
+]

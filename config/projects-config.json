@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "projectKey": "michal-demo-project",
+      "environments": ["test"]
+    },
+    {
+      "projectKey": "cxld-nice-mulberry",
+      "environments": ["test", "production"]
+    },
+    {
+      "projectKey": "tarq-scratchpad",
+      "environments": ["test", "production"]
+    }
+  ],
+  "globalSettings": {
+    "rulesPath": "./config/cleanup-rules.yaml",
+    "outputDirectory": "./artifacts"
+  }
+}
