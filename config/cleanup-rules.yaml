@@ -10,4 +10,4 @@ checkForFlagType: true          # whether to check consider the flag type (tempo
 checkForFlagStatus: true        # whether to check the flag status (new/active/launched/inactive)
 
 # Debug output
-printDebugLogs: 3               # number of flags to show debug info for (0 = no debug logs)
+printDebugLogs: 0               # number of flags to show debug info for (0 = no debug logs)

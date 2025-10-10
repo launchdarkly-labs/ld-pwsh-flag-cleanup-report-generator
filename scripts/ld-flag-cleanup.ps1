@@ -322,12 +322,24 @@ foreach ($projectConfig in $projectsToProcess) {
                 }
             }
             
-            # Determine purpose based on aggregated status
-            # For code removal: status should be 'launched' (serving same variation to everyone)
-            # For archival: status should be 'inactive' (not serving any traffic)
-            $purpose = if ($aggregatedStatus.status -eq "launched") { "codeRemoval" } else { "archival" }
+            # Determine purpose based on code references first, then status
+            # Flags with code references should NEVER be considered for archival
+            $hasCodeRefs = $false
+            if ($flag.codeReferences -and $flag.codeReferences.items -and $flag.codeReferences.items.Count -gt 0) {
+                $hasCodeRefs = $true
+            }
             
-            Write-Verbose "Processing flag: $($flag.key) (aggregated across $($environments.Count) environments, status: $($aggregatedStatus.status), purpose: $purpose)"
+            if ($hasCodeRefs) {
+                # Flags with code references should only be considered for code removal
+                $purpose = "codeRemoval"
+            } else {
+                # Flags without code references can be considered for archival based on status
+                # For code removal: status should be 'launched' (serving same variation to everyone)
+                # For archival: status should be 'inactive' (not serving any traffic)
+                $purpose = if ($aggregatedStatus.status -eq "launched") { "codeRemoval" } else { "archival" }
+            }
+            
+            Write-Verbose "Processing flag: $($flag.key) (aggregated across $($environments.Count) environments, status: $($aggregatedStatus.status), hasCodeRefs: $hasCodeRefs, purpose: $purpose)"
             $decision = Invoke-FlagProcessing -Flag $flag -StatusLookup $aggregatedStatus -Project $project -Env $environments -Rules $rules -Purpose $purpose
             [void]$candidates.Add($decision)
             $script:processedFlags++
