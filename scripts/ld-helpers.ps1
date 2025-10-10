@@ -215,19 +215,75 @@ function Test-Flag {
     $neverRequested = $null -eq $lastReqDays
     $neverCreated = $null -eq $createdDays
   
-    # Since flags are pre-filtered by ldcli, we only need to check status
-    if ($Rules.checkForFlagStatus) {
-        if ($Purpose -eq "codeRemoval" -and $Context.Status -eq "launched") {
-            $readyForCodeRemoval = $true
-            [void]$reasons.Add("READY FOR CODE REMOVAL")
-        } elseif ($Purpose -eq "archival" -and $Context.Status -eq "inactive") {
-            $readyForArchival = $true
-            [void]$reasons.Add("READY FOR ARCHIVAL")
-        } else {
-            [void]$reasons.Add("status=$($Context.Status) (need launched for code removal, inactive for archival)")
+    # Safety check: Flags with code references should NEVER be marked for archival
+    # But only if code reference checking is enabled
+    if ($Rules.checkForCodeReferences -and $Context.HasCodeRefs -and $Purpose -eq "archival") {
+        [void]$reasons.Add("SAFETY CHECK: Flag has code references, cannot be archived")
+        $readyForArchival = $false
+        # Convert to code removal purpose instead
+        $Purpose = "codeRemoval"
+    }
+    
+    # Validate all criteria based on configuration and purpose
+    $validationPassed = $true
+    
+    # 1. Creation date validation (always required)
+    if ($neverCreated) {
+        [void]$reasons.Add("creation date unknown")
+        $validationPassed = $false
+    } elseif ($createdDays -lt $Rules.daysSinceCreation) {
+        [void]$reasons.Add("created $([int]$createdDays) days ago (need >$($Rules.daysSinceCreation) days)")
+        $validationPassed = $false
+    }
+    
+    # 2. Evaluation date validation (different for each purpose)
+    if ($Purpose -eq "codeRemoval") {
+        # For code removal: must have recent evaluations
+        if ($neverRequested) {
+            [void]$reasons.Add("never evaluated (need recent evaluations for code removal)")
+            $validationPassed = $false
+        } elseif ($lastReqDays -gt $Rules.daysSinceLastEvaluation) {
+            [void]$reasons.Add("last evaluated $([int]$lastReqDays) days ago (need <$($Rules.daysSinceLastEvaluation) days)")
+            $validationPassed = $false
         }
-    } else {
-        # If not checking status, all pre-filtered flags are ready
+    } elseif ($Purpose -eq "archival") {
+        # For archival: should NOT have recent evaluations
+        if (-not $neverRequested -and $lastReqDays -le $Rules.daysSinceLastEvaluation) {
+            [void]$reasons.Add("evaluated $([int]$lastReqDays) days ago (need >$($Rules.daysSinceLastEvaluation) days for archival)")
+            $validationPassed = $false
+        }
+    }
+    
+    # 3. Flag type validation (if enabled)
+    if ($Rules.checkForFlagType -and $Context.FlagType -ne "temporary") {
+        [void]$reasons.Add("flag type=$($Context.FlagType) (need temporary)")
+        $validationPassed = $false
+    }
+    
+    # 4. Flag status validation (if enabled)
+    if ($Rules.checkForFlagStatus) {
+        if ($Purpose -eq "codeRemoval" -and $Context.Status -ne "launched") {
+            [void]$reasons.Add("status=$($Context.Status) (need launched for code removal)")
+            $validationPassed = $false
+        } elseif ($Purpose -eq "archival" -and $Context.Status -ne "inactive") {
+            [void]$reasons.Add("status=$($Context.Status) (need inactive for archival)")
+            $validationPassed = $false
+        }
+    }
+    
+    # 5. Code references validation (if enabled)
+    if ($Rules.checkForCodeReferences) {
+        if ($Purpose -eq "codeRemoval" -and -not $Context.HasCodeRefs) {
+            [void]$reasons.Add("no code references (need code references for code removal)")
+            $validationPassed = $false
+        } elseif ($Purpose -eq "archival" -and $Context.HasCodeRefs) {
+            [void]$reasons.Add("has code references (need no code references for archival)")
+            $validationPassed = $false
+        }
+    }
+    
+    # Set final decision based on validation
+    if ($validationPassed) {
         if ($Purpose -eq "codeRemoval") {
             $readyForCodeRemoval = $true
             [void]$reasons.Add("READY FOR CODE REMOVAL")
@@ -235,6 +291,8 @@ function Test-Flag {
             $readyForArchival = $true
             [void]$reasons.Add("READY FOR ARCHIVAL")
         }
+    } else {
+        [void]$reasons.Add("NOT READY - validation failed")
     }
     
     # Add information about never being requested
@@ -334,7 +392,7 @@ function New-PrSummary {
     
     if ($archivalCandidates.Count -gt 0) {
         $lines += "## Ready for Archival ($($archivalCandidates.Count) flags)"
-        $lines += "Flags that are inactive, have no recent evaluations, and no code references:"
+        $lines += "Flags that are inactive, have no recent evaluations, and have NO code references:"
         $lines += ""
         $lines += "| Project | Env | Key | Status | LastRequested | Created |"
         $lines += "|---|---|---|---|---|---|"
